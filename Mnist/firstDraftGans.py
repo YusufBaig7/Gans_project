@@ -7,8 +7,7 @@ import time
 
 plt.imshow(train_images[1])
 
-train_images = train_images/255
-test_images = test_images/255
+train_images = (train_images - 127.5) / 127.5
 
 train_images = train_images.reshape(train_images.shape[0], 28, 28, 1)
 
@@ -86,6 +85,6 @@ def train_step(images):
         print('Generator loss is:', np.mean(gen_loss))
         print('Discriminator loss is:', np.mean(disc_loss))
 
-train(train_dataset, 10)
+train(train_dataset, 2)
 
 plt.imshow(tf.reshape(generator(np.random.randn(1,100)),(28,28)),cmap = "gray")
